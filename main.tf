@@ -39,6 +39,8 @@ module "ecommerce_network" {
           #ports    = ["22"]
         }]
         target_tags = [ "web_servers" ]
+        source_tags = []
+        source_service_accounts = []
     }
   ]
 }

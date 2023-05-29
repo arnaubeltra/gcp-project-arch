@@ -26,7 +26,7 @@ resource "google_compute_firewall" "vpc_firewall_rule" {
     for_each = lookup(each.value, "allow", [])
     content {
       protocol = allow.value.protocol
-      ports    = lookup(allow.value, "ports", null)
+      ports = lookup(allow.value, "ports", null)
     }
   }
 }
