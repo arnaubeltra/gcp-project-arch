@@ -33,9 +33,11 @@ module "ecommerce_network" {
   firewall_rules = [
     {
         firewall_rule_name = "icmp-allow"
-        protocol = "icmp"
-        ports = null
-        source_tags = "web_servers"
+        allow = [{
+          protocol = "icmp"
+          #ports    = ["22"]
+        }]
+        source_tags = [ "web_servers", ]
     }
   ]
 }
