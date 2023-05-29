@@ -29,7 +29,7 @@ module "ecommerce_network" {
         ip_cidr_range = "10.0.5.0/24"
         region = "europe-west1-c"
     },
-   ]
+  ]
 
   firewall_rules = [
     {

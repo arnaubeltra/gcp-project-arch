@@ -6,20 +6,24 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_subnetwork" "vpc_subnetwork" {
-  name = var.subnetwork_name
-  ip_cidr_range = var.ip_cidr_range
-  region = var.region
+  for_each = local.subnetworks
+
+  name = each.value.subnetwork_name
+  ip_cidr_range = each.value.ip_cidr_range
+  region = each.value.region
   network = google_compute_network.vpc_network.id
 }
 
 resource "google_compute_firewall" "vpc_firewall_rule" {
-  name = var.firewall_rule_name
+  for_each = local.firewall_rules
+
+  name = each.value
   network = google_compute_network.vpc_network.id
 
   allow {
-    protocol = var.protocol
-    ports = var.ports
+    protocol = each.value.protocol
+    ports = each.value.ports
   }
 
-  source_tags = var.source_tags
+  source_tags = each.value.source_tags
 }

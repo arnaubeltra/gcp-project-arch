@@ -15,19 +15,10 @@ variable "network_name" {}
 
 
 variable "subnetworks" {
-  type = list(object({
-    subnetwork_name   = string
-    ip_cidr_range = string
-    region        = string
-  }))
+  type = list(map(string))
 }
 
 
 variable "firewall_rules" {
-  type = list(object({
-    firewall_rule_name  = string
-    protocol            = string
-    ports               = number
-    source_tags         = list(string)
-  }))
+  type = list(map(string))
 }
