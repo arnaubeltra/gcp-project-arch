@@ -29,5 +29,5 @@ resource "google_compute_firewall" "vpc_firewall_rule" {
     }
   }
 
-  target_target_tags = each.value.source_tags
+  target_tags = each.value.source_tags
 }
