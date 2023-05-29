@@ -36,7 +36,6 @@ module "ecommerce_network" {
         ranges = ["0.0.0.0/0"]
         allow = [{
           protocol = "icmp"
-          #ports    = ["22"]
         }]
         target_tags = [ "web_servers" ]
         source_tags = []
@@ -75,9 +74,35 @@ module "web_servers_instance_group" {
   initial_delay_sec = 300
 }
 
-/*module "load_balancer_http" {
-  source  = "GoogleCloudPlatform/lb-http/google"
-  version = "~> 6.0"
-  name    = "ecommerce_load_balancer"
-  project = var.project
+/*module "external_load_balancer" {
+  source = "GoogleCloudPlatform/lb-http/google"
+  version = "~> 9.0"
+
+  name = "web-servers-external-load-balancer"
+  project = var.gcp_project
+
+  target_tags = [ module.web_servers_instance_group.instance_group_name ]
+
+  backends = {
+    default = {
+      port = 80
+      protocol = "HTTP"
+      port_name = "http"
+      timeout_sec = 30
+      enable_cdn = false
+    }
+  }
+
+  health_check = {
+    check_interval_sec  = 5
+    timeout_sec         = 2
+    healthy_threshold   = 2
+    unhealthy_threshold = 10
+    request_path        = "/"
+    port                = 80
+  }
+
+  groups = [
+
+  ]
 }*/
