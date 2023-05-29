@@ -47,7 +47,7 @@ module "web_servers_instance_group" {
   instance_template_name = "web_servers_ins_tem"
   machine_type = "e2-medium"
   source_image = "debian-cloud/debian-11"
-  network = module.ecommerce_network.network_name
+  network = "ecommerce_network"
   subnetwork = "webapp_prod_1"
 
   health_check_name = "web_servers_health_check"
