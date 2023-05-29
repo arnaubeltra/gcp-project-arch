@@ -6,7 +6,7 @@ variable "zone" {
   default = "europe-west1-b"
 }
 
-variable "project_id" {
+variable "gcp_project" {
   default = "spa-learningdev-dev-001"
 }
 
