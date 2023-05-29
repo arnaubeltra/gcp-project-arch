@@ -5,6 +5,13 @@ resource "google_compute_network" "vpc_network" {
   mtu = 1460
 }
 
+locals {
+  subnetworks = {
+    for x in var.subnetworks:
+    "${x.region}/${x.subnetwork_name}" => x
+  }
+}
+
 resource "google_compute_subnetwork" "vpc_subnetwork" {
   for_each = local.subnetworks
 

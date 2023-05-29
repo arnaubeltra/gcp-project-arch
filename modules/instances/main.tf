@@ -58,7 +58,7 @@ resource "google_compute_region_instance_group_manager" "managed_instance_group_
   name = var.instance_group_name
 
   base_instance_name = var.base_instance_name
-  zone = var.main_instance_group_zone
+  //zone = var.main_instance_group_zone
   distribution_policy_zones = var.distribution_policy_zones
 
   version {
