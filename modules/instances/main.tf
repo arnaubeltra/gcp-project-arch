@@ -66,7 +66,7 @@ resource "google_compute_region_instance_group_manager" "managed_instance_group_
   }
 
   auto_healing_policies {
-    health_check = google_compute_health_check.health_check_app
+    health_check = google_compute_health_check.health_check_app.id
     initial_delay_sec = var.initial_delay_sec
   }
 }
