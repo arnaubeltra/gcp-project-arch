@@ -4,7 +4,7 @@ module "ecommerce_network" {
   network_name = "ecommerce-network"
   subnetworks = [ 
     {
-        subnetwork_name = "webapp-prod-1"
+        subnetwork_name = "webapp-prod"
         ip_cidr_range = "10.0.1.0/24"
         region = "europe-west1"
     },
@@ -40,7 +40,7 @@ module "web_servers_instance_group" {
   machine_type = "e2-medium"
   source_image = "debian-cloud/debian-11"
   network = "ecommerce-network"
-  subnetwork = "webapp-prod-1"
+  subnetwork = "webapp-prod"
 
   health_check_name = "web-servers-health-check"
   check_interval_sec = 5
