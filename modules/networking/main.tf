@@ -14,7 +14,7 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   network = google_compute_network.vpc_network.id
 }
 
-resource "google_compute_firewall" "vpc_firewall_rule" {
+/*resource "google_compute_firewall" "vpc_firewall_rule" {
   for_each = local.firewall_rules
 
   name = each.value
@@ -26,4 +26,4 @@ resource "google_compute_firewall" "vpc_firewall_rule" {
   }
 
   source_tags = each.value.source_tags
-}
+}*/
