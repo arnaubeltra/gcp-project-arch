@@ -38,7 +38,7 @@ module "ecommerce_network" {
           protocol = "icmp"
           #ports    = ["22"]
         }]
-        target_tags = [ "web_servers", ]
+        target_tags = [ "web_servers" ]
     }
   ]
 }
