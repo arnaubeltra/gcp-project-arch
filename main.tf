@@ -36,6 +36,8 @@ module "ecommerce_network" {
 module "web_servers_instance_group" {
   source = "./modules/instances"
 
+  depends_on = [ module.ecommerce_network ]
+
   instance_template_name = "web-servers-ins-tem"
   machine_type = "e2-medium"
   source_image = "debian-cloud/debian-11"
