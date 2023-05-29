@@ -40,7 +40,6 @@ module "ecommerce_network" {
         }]
         target_tags = [ "web_servers" ]
         source_tags = []
-        source_service_accounts = []
     }
   ]
 }

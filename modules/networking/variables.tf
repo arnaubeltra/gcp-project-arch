@@ -26,7 +26,6 @@ variable "firewall_rules" {
     ranges = list(string)
     target_tags = optional(list(string))
     source_tags = optional(list(string))
-    source_service_accounts = optional(list(string))
 
     allow = list(object({
       protocol = string

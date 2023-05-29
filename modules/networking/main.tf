@@ -20,7 +20,7 @@ resource "google_compute_firewall" "vpc_firewall_rule" {
   name = each.value.firewall_rule_name
   network = google_compute_network.vpc_network.id
   target_tags = each.value.target_tags
-
+  source_tags = each.value.source_tags
 
   dynamic "allow" {
     for_each = lookup(each.value, "allow", [])
