@@ -48,7 +48,9 @@ module "web_servers_instance_group" {
   machine_type = "e2-medium"
   source_image = "debian-cloud/debian-11"
   network = module.ecommerce_network.network_name
+  subnetwork = "webapp_prod_1"
 
+  health_check_name = "web_servers_health_check"
   check_interval_sec = 5
   timeout_sec = 2
   healthy_threshold = 2
