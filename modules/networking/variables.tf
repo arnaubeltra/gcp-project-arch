@@ -19,6 +19,6 @@ variable "subnetworks" {
 }
 
 
-/*variable "firewall_rules" {
+variable "firewall_rules" {
   type = list(map(string))
-}*/
+}

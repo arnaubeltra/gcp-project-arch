@@ -1,4 +1,3 @@
-
 module "ecommerce_network" {
   source = "./modules/networking"
 
@@ -31,14 +30,14 @@ module "ecommerce_network" {
     },
   ]
 
-  /*firewall_rules = [
+  firewall_rules = [
     {
         firewall_rule_name = "icmp-allow"
         protocol = "icmp"
         ports = null
         source_tags = "web_servers"
     }
-  ]*/
+  ]
 }
 
 module "web_servers_instance_group" {

@@ -5,15 +5,8 @@ resource "google_compute_network" "vpc_network" {
   mtu = 1460
 }
 
-locals {
-  subnetworks = {
-    for x in var.subnetworks:
-    "${x.region}/${x.subnetwork_name}" => x
-  }
-}
-
 resource "google_compute_subnetwork" "vpc_subnetwork" {
-  for_each = local.subnetworks
+  for_each = { for x in var.subnetworks : "${x.region}/${x.subnetwork_name}" => x }
 
   name = each.value.subnetwork_name
   ip_cidr_range = each.value.ip_cidr_range
@@ -21,10 +14,10 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   network = google_compute_network.vpc_network.id
 }
 
-/*resource "google_compute_firewall" "vpc_firewall_rule" {
-  for_each = local.firewall_rules
+resource "google_compute_firewall" "vpc_firewall_rule" {
+  for_each = { for r in var.firewall_rules : r.firewall_rule_name => r }
 
-  name = each.value
+  name = each.value.firewall_rule_name
   network = google_compute_network.vpc_network.id
 
   allow {
@@ -33,4 +26,4 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   }
 
   source_tags = each.value.source_tags
-}*/
+}
