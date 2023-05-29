@@ -6,27 +6,17 @@ module "ecommerce_network" {
     {
         subnetwork_name = "webapp-prod-1"
         ip_cidr_range = "10.0.1.0/24"
-        region = "europe-west1-b"
-    },
-    {
-        subnetwork_name = "webapp-prod-2"
-        ip_cidr_range = "10.0.2.0/24"
-        region = "europe-west1-c"
-    },
-    {
-        subnetwork_name = "webapp-prod-3"
-        ip_cidr_range = "10.0.3.0/24"
-        region = "europe-west1-d"
+        region = "europe-west1"
     },
     {
         subnetwork_name = "database-prod"
-        ip_cidr_range = "10.0.4.0/24"
-        region = "europe-west1-b"
+        ip_cidr_range = "10.0.2.0/24"
+        region = "europe-west1"
     },
     {
         subnetwork_name = "database-standby-prod"
-        ip_cidr_range = "10.0.5.0/24"
-        region = "europe-west1-c"
+        ip_cidr_range = "10.0.3.0/24"
+        region = "europe-west1"
     },
   ]
 
@@ -37,7 +27,7 @@ module "ecommerce_network" {
         allow = [{
           protocol = "icmp"
         }]
-        target_tags = [ "web_servers" ]
+        target_tags = [ "web-servers" ]
         source_tags = []
     }
   ]

@@ -1,7 +1,7 @@
 resource "google_compute_instance_template" "instance_template_app" {
   name = var.instance_template_name
   
-  tags = ["web_servers"]
+  tags = ["web-servers"]
   machine_type = var.machine_type
 
   scheduling {
