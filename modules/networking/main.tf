@@ -17,10 +17,11 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
 resource "google_compute_firewall" "vpc_firewall_rule" {
   for_each = { for r in var.firewall_rules : r.firewall_rule_name => r }
 
-  name        = each.value.firewall_rule_name
-  network     = google_compute_network.vpc_network.id
-  target_tags = each.value.target_tags
-  source_tags = each.value.source_tags
+  name          = each.value.firewall_rule_name
+  network       = google_compute_network.vpc_network.id
+  target_tags   = each.value.target_tags
+  source_tags   = each.value.source_tags
+  source_ranges = each.value.ranges
 
   dynamic "allow" {
     for_each = lookup(each.value, "allow", [])

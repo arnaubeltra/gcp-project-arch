@@ -19,7 +19,7 @@ module "ecommerce_network" {
     {
       firewall_rule_name = "ecommerce-icmp-allow"
       ranges             = ["0.0.0.0/0"]
-      target_tags        = ["ecommerce-general-servers"]
+      target_tags        = ["ecommerce-servers"]
       source_tags        = []
 
       allow = [{
