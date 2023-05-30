@@ -26,6 +26,7 @@ resource "google_sql_database_instance" "database_master" {
   settings {
     tier              = var.database_tier
     availability_type = var.availability_type
+    disk_size         = var.disk_size
 
     backup_configuration {
       enabled            = true
@@ -56,11 +57,12 @@ resource "google_sql_database_instance" "read_replica" {
   settings {
     tier              = var.database_tier
     availability_type = var.availability_type
+    disk_size         = var.disk_size
 
-    backup_configuration {
+    /*backup_configuration {
       enabled            = true
       binary_log_enabled = true
-    }
+    }*/
 
     ip_configuration {
       ipv4_enabled = true

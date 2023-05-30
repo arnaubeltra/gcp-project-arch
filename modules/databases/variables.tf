@@ -28,6 +28,8 @@ variable "database_tier" {}
 
 variable "availability_type" {}
 
+variable "disk_size" {}
+
 
 variable "database_read_replica_name" {}
 

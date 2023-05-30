@@ -7,17 +7,7 @@ module "ecommerce_network" {
       subnetwork_name = "webapp-prod"
       ip_cidr_range   = "10.0.1.0/24"
       region          = "europe-west1"
-    },
-    {
-      subnetwork_name = "database-prod"
-      ip_cidr_range   = "10.0.2.0/24"
-      region          = "europe-west1"
-    },
-    {
-      subnetwork_name = "database-standby-prod"
-      ip_cidr_range   = "10.0.3.0/24"
-      region          = "europe-west1"
-    },
+    }
   ]
 
   firewall_rules = [
@@ -90,6 +80,7 @@ module "ecommerce_database" {
   database_region   = "europe-west1"
   database_tier     = "db-f1-micro"
   availability_type = "REGIONAL"
+  disk_size         = "100"
 
   database_read_replica_name = "ecommerce-database-read-replica"
   read_replica_region        = "europe-west2"
