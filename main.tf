@@ -54,7 +54,7 @@ module "web_servers_instance_group" {
   port                = "80"
 
   autoscaler_name        = "web-server-autoscaler"
-  autoscaler_zone        = "europe-west1-b"
+  autoscaler_region        = "europe-west1"
   max_replicas           = 5
   min_replicas           = 1
   cooldown_period        = 300

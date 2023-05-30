@@ -52,7 +52,7 @@ variable "port" {}
 
 variable "autoscaler_name" {}
 
-variable "autoscaler_zone" {}
+variable "autoscaler_region" {}
 
 variable "max_replicas" {}
 
