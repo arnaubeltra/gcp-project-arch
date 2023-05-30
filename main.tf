@@ -64,10 +64,10 @@ module "ecommerce_frontend_instances" {
   subnetwork             = "ecommerce-frontend"
   startup_script         = {
     script = <<EOF
-      #!/bin/bash
-      apt-get update
-      apt-get install -y nginx
-      systemctl start nginx
+    #!/bin/bash
+    sudo apt-get update
+    sudo apt-get install -y nginx
+    sudo systemctl start nginx
     EOF
   }
 
@@ -106,8 +106,8 @@ module "ecommerce_backend_instances" {
   subnetwork             = "ecommerce-backend"
   startup_script         = {
     script = <<EOF
-      #!/bin/bash
-      python3 -m http.server 8000
+    #!/bin/bash
+    python3 -m http.server 8000
     EOF
   }
 
