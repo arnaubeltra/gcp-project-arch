@@ -48,8 +48,8 @@ resource "google_compute_health_check" "health_check_app" {
 resource "google_compute_region_autoscaler" "autoscaler_app" {
   name = var.autoscaler_name
 
-  region     = var.autoscaler_region
-  target     = google_compute_region_instance_group_manager.managed_instance_group_app.id
+  region = var.autoscaler_region
+  target = google_compute_region_instance_group_manager.managed_instance_group_app.id
 
   autoscaling_policy {
     mode            = "ON"

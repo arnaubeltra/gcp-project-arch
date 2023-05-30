@@ -26,9 +26,20 @@ module "ecommerce_network" {
       ranges             = ["0.0.0.0/0"]
       target_tags        = ["web-servers"]
       source_tags        = []
-      
+
       allow = [{
         protocol = "icmp"
+      }]
+    },
+    {
+      firewall_rule_name = "http-allow"
+      ranges             = ["0.0.0.0/0"]
+      target_tags        = ["web-servers"]
+      source_tags        = []
+
+      allow = [{
+        protocol = "tcp"
+        port     = 80
       }]
     }
   ]
@@ -67,12 +78,22 @@ module "ecommerce_web_servers_instance_group" {
   initial_delay_sec          = 300
 }
 
-/*module "ecommerce_database" {
-  database_name = "web"
-  database_version = "MYSQL_8_0"
-  database_region = "europe-west1-b"
-  database_tier = "db-f1-micro"
-}*/
+module "ecommerce_database" {
+  source = "./modules/databases"
+
+  private_ip_address_name = "database-private-ip"
+  prefix_length           = 24
+  network                 = "projects/my-project/global/networks/ecommerce-network"
+
+  database_name     = "ecommerce-database"
+  database_version  = "MYSQL_8_0"
+  database_region   = "europe-west1"
+  database_tier     = "db-f1-micro"
+  availability_type = "REGIONAL"
+
+  database_read_replica_name = "ecommerce-database-read-replica"
+  read_replica_region        = "europe-west2"
+}
 
 
 
