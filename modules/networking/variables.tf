@@ -22,14 +22,14 @@ variable "subnetworks" {
 variable "firewall_rules" {
   default = []
   type = list(object({
-    firewall_rule_name  = string
-    ranges = list(string)
-    target_tags = optional(list(string))
-    source_tags = optional(list(string))
+    firewall_rule_name = string
+    ranges             = list(string)
+    target_tags        = optional(list(string))
+    source_tags        = optional(list(string))
 
     allow = list(object({
       protocol = string
-      ports = optional(list(string)) 
+      ports    = optional(list(string))
     }))
   }))
 }

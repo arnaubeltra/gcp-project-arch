@@ -69,7 +69,7 @@ variable "instance_group_name" {}
 
 variable "base_instance_name" {}
 
-variable "main_instance_group_zone" {}
+variable "main_instance_group_region" {}
 
 variable "distribution_policy_zones" {
   type = list(string)
