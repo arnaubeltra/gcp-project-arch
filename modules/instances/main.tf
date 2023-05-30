@@ -40,8 +40,8 @@ resource "google_compute_autoscaler" "autoscaler_app" {
   name = var.autoscaler_name
 
   zone = var.autoscaler_zone
-  depends_on = [ google_compute_region_instance_group_manager.managed_instance_group_app ]
-  target = google_compute_region_instance_group_manager.managed_instance_group_app.id
+  target = google_compute_region_instance_group_manager.managed_instance_group_app.instance_group
+  depends_on = [google_compute_region_instance_group_manager.managed_instance_group_app]
 
   autoscaling_policy {
     mode = "ON"
