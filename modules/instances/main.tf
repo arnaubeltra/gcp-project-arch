@@ -20,6 +20,15 @@ resource "google_compute_instance_template" "instance_template_app" {
     subnetwork = var.subnetwork
     access_config {}
   }
+
+  metadata = {
+    startup-script = <<-EOF
+      #!/bin/bash
+      apt-get update
+      apt-get install -y nginx
+      systemctl start nginx
+    EOF
+  }
 }
 
 resource "google_compute_health_check" "health_check_app" {

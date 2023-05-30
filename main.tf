@@ -34,7 +34,7 @@ module "ecommerce_network" {
   ]
 }
 
-module "web_servers_instance_group" {
+module "ecommerce_web_servers_instance_group" {
   source = "./modules/instances"
 
   depends_on = [module.ecommerce_network]
@@ -54,7 +54,7 @@ module "web_servers_instance_group" {
   port                = "80"
 
   autoscaler_name        = "web-server-autoscaler"
-  autoscaler_region        = "europe-west1"
+  autoscaler_region      = "europe-west1"
   max_replicas           = 5
   min_replicas           = 1
   cooldown_period        = 300
@@ -66,6 +66,18 @@ module "web_servers_instance_group" {
   distribution_policy_zones  = ["europe-west1-b", "europe-west1-c", "europe-west1-d"]
   initial_delay_sec          = 300
 }
+
+/*module "ecommerce_database" {
+  database_name = "web"
+  database_version = "MYSQL_8_0"
+  database_region = "europe-west1-b"
+  database_tier = "db-f1-micro"
+}*/
+
+
+
+
+
 
 /*module "external_load_balancer" {
   source = "GoogleCloudPlatform/lb-http/google"
