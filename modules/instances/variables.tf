@@ -21,6 +21,12 @@ variable "source_image" {
   default = "debian-cloud/debian-11"
 }
 
+variable "network_tags" {
+  type = list(string)
+}
+
+variable "startup_script" {}
+
 
 variable "network" {}
 

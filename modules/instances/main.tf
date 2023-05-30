@@ -1,7 +1,7 @@
 resource "google_compute_instance_template" "instance_template_app" {
   name = var.instance_template_name
 
-  tags         = ["web-servers"]
+  tags         = var.network_tags
   machine_type = var.machine_type
 
   scheduling {
@@ -21,14 +21,7 @@ resource "google_compute_instance_template" "instance_template_app" {
     access_config {}
   }
 
-  metadata = {
-    startup-script = <<-EOF
-      #!/bin/bash
-      apt-get update
-      apt-get install -y nginx
-      systemctl start nginx
-    EOF
-  }
+  metadata = var.startup_script
 }
 
 resource "google_compute_health_check" "health_check_app" {

@@ -59,6 +59,7 @@ resource "google_sql_database_instance" "read_replica" {
     availability_type = var.availability_type
     disk_size         = var.disk_size
 
+    # Check if this part is necessary in a Read-replica
     /*backup_configuration {
       enabled            = true
       binary_log_enabled = true
