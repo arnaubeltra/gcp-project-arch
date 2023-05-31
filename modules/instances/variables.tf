@@ -7,7 +7,7 @@ variable "zone" {
 }
 
 variable "gcp_project" {
-  default = "spa-learningdev-dev-001"
+  default = ""
 }
 
 
@@ -25,7 +25,7 @@ variable "network_tags" {
   type = list(string)
 }
 
-variable "startup_script" {}
+variable "metadata" {}
 
 
 variable "network" {}

@@ -7,7 +7,7 @@ variable "zone" {
 }
 
 variable "gcp_project" {
-  default = "spa-learningdev-dev-001"
+  default = ""
 }
 
 

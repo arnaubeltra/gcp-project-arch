@@ -21,7 +21,7 @@ resource "google_compute_instance_template" "instance_template_app" {
     access_config {}
   }
 
-  metadata = var.startup_script
+  metadata = var.metadata
 }
 
 resource "google_compute_health_check" "health_check_app" {

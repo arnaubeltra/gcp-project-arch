@@ -62,8 +62,8 @@ module "ecommerce_frontend_instances" {
   source_image           = "debian-cloud/debian-11"
   network                = "ecommerce-network"
   subnetwork             = "ecommerce-frontend"
-  startup_script         = {
-    script = <<-EOF
+  metadata = {
+    startup_script = <<-EOF
     #!/bin/bash
     sudo apt-get update
     sudo apt-get install -y nginx
@@ -104,8 +104,8 @@ module "ecommerce_backend_instances" {
   source_image           = "debian-cloud/debian-11"
   network                = "ecommerce-network"
   subnetwork             = "ecommerce-backend"
-  startup_script         = {
-    script = <<-EOF
+  metadata         = {
+    startup_script = <<-EOF
     #!/bin/bash
     python3 -m http.server 8000
     EOF
