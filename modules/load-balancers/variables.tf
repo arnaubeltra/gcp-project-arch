@@ -26,6 +26,8 @@ variable "protocol" {}
 
 variable "group" {}
 
+variable "balancing_mode" {}
+
 
 variable "lb_health_check_name" {}
 
