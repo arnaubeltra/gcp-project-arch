@@ -25,7 +25,7 @@ variable "network_tags" {
   type = list(string)
 }
 
-variable "metadata" {}
+variable "metadata_startup_script" {}
 
 
 variable "network" {}

@@ -62,14 +62,12 @@ module "ecommerce_frontend_instances" {
   source_image           = "debian-cloud/debian-11"
   network                = "ecommerce-network"
   subnetwork             = "ecommerce-frontend"
-  metadata = {
-    startup_script = <<-EOF
+  metadata_startup_script = <<-EOT
     #!/bin/bash
     sudo apt-get update
     sudo apt-get install -y nginx
     sudo systemctl start nginx
-    EOF
-  }
+    EOT
 
   health_check_name   = "ecommerce-frontend-health-check"
   check_interval_sec  = 5
@@ -104,12 +102,10 @@ module "ecommerce_backend_instances" {
   source_image           = "debian-cloud/debian-11"
   network                = "ecommerce-network"
   subnetwork             = "ecommerce-backend"
-  metadata = {
-    startup_script = <<-EOF
+  metadata_startup_script = <<-EOT
     #!/bin/bash
     python3 -m http.server 8000
-    EOF
-  }
+    EOT
 
   health_check_name   = "ecommerce-backend-health-check"
   check_interval_sec  = 5

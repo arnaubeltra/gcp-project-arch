@@ -19,20 +19,12 @@ variable "load_balancing_scheme" {}
 
 variable "port_range" {}
 
-#variable "network" {}
-
-#variable "subnetwork" {}
-
 
 variable "lb_backend_name" {}
 
 variable "protocol" {}
 
 variable "group" {}
-
-variable "balancing_mode" {}
-
-variable "capacity_scaler" {}
 
 
 variable "lb_health_check_name" {}
