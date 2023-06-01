@@ -12,6 +12,7 @@ resource "google_compute_region_backend_service" "lb_backend" {
   region                = var.region
   load_balancing_scheme = var.load_balancing_scheme
   health_checks         = [google_compute_region_health_check.lb_health_check.id]
+  protocol = var.protocol
   backend {
     group           = var.group
   }

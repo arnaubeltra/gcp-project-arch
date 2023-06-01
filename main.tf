@@ -157,7 +157,6 @@ module "external_load_balancer" {
   port_range              = "80"
 
   lb_backend_name = "ecommerce-external-lb-backend"
-  protocol        = "HTTP"
   group           = module.ecommerce_frontend_instances.managed_instance_group_url
 
   lb_health_check_name = "ecommerce-external-lb-health-check"
@@ -176,7 +175,7 @@ module "internal_load_balancer" {
   port_range              = "8000"
 
   lb_backend_name = "ecommerce-internal-lb-backend"
-  protocol        = "HTTP"
+  protocol        = "TCP"
   group           = module.ecommerce_backend_instances.managed_instance_group_url
 
   lb_health_check_name = "ecommerce-internal-lb-health-check"
