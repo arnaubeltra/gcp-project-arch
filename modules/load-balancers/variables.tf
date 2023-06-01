@@ -19,9 +19,9 @@ variable "load_balancing_scheme" {}
 
 variable "port_range" {}
 
-variable "network" {}
+/*variable "network" {}
 
-variable "subnetwork" {}
+variable "subnetwork" {}*/
 
 
 variable "lb_backend_name" {}
