@@ -12,7 +12,7 @@ resource "google_compute_forwarding_rule" "lb_forwarding_rule" {
 resource "google_compute_region_backend_service" "lb_backend" {
   name                  = var.lb_backend_name
   region                = var.region
-  protocol              = var.protocol
+  #protocol              = var.protocol
   load_balancing_scheme = var.load_balancing_scheme
   health_checks         = [google_compute_region_health_check.lb_health_check.id]
   backend {
