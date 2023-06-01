@@ -155,8 +155,8 @@ module "external_load_balancer" {
   ip_protocol             = "TCP"
   load_balancing_scheme   = "EXTERNAL"
   port_range              = "80"
-  network = ""
-  subnetwork = ""
+  //network = ""
+  //subnetwork = ""
 
   lb_backend_name = "ecommerce-external-lb-backend"
   protocol        = "TCP"
@@ -169,7 +169,7 @@ module "external_load_balancer" {
   port                 = 80
 }
 
-module "internal_load_balancer" {
+/*module "internal_load_balancer" {
   source = "./modules/load-balancers"
 
   lb_forwarding_rule_name = "ecommerce-internal-lb-forwarding-rule"
@@ -177,8 +177,8 @@ module "internal_load_balancer" {
   ip_protocol             = "TCP"
   load_balancing_scheme   = "INTERNAL"
   port_range              = "8000"
-  network = module.ecommerce_network.network_id
-  subnetwork = module.ecommerce_network.subnetwork_id
+  //network = module.ecommerce_network.network_id
+  //subnetwork = module.ecommerce_network.subnetwork_id
 
   lb_backend_name = "ecommerce-internal-lb-backend"
   protocol        = "TCP"
@@ -189,4 +189,4 @@ module "internal_load_balancer" {
   check_interval_sec   = 1
   timeout_sec          = 1
   port                 = 8000
-}
+}*/
