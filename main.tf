@@ -104,7 +104,7 @@ module "ecommerce_backend_instances" {
   source_image           = "debian-cloud/debian-11"
   network                = "ecommerce-network"
   subnetwork             = "ecommerce-backend"
-  metadata         = {
+  metadata = {
     startup_script = <<-EOF
     #!/bin/bash
     python3 -m http.server 8000
@@ -151,61 +151,23 @@ module "ecommerce_backend_instances" {
   read_replica_region        = "europe-west2"
 }*/
 
-/*
-module "ecommerce_internal_load_balancer" {
-  source  = "gruntwork-io/load-balancer/google//modules/internal-load-balancer"
-  version = "0.1.2"
+module "external_load_balancer" {
+  source = "./modules/load-balancers"
 
-  name = "ecommerce-internal-load-balancer"
-  region = "europe-west1"
+  lb_forwarding_rule_name = "ecommerce-external-lb-forwarding-rule"
+  region                  = "europe-west1"
+  ip_protocol             = "TCP"
+  load_balancing_scheme   = "EXTERNAL"
+  port_range              = "80"
 
-  backends = [
-    {
-      group = module.ecommerce_instances.managed_instance_group_url
-    }
-  ]
+  lb_backend_name = "ecommerce-external-lb-backend"
+  protocol        = "HTTP"
+  group           = module.ecommerce_frontend_instances.managed_instance_group_url
+  balancing_mode  = "UTILIZATION"
+  capacity_scaler = 1.0
 
-  network = "ecommerce-network"
-  subnetwork = "backend-prod"
-
-  health_check_port = 3306
-  http_health_check = false
-  ports = ["3306"]
+  lb_health_check_name = "ecommerce-external-lb-health-check"
+  check_interval_sec   = 1
+  timeout_sec          = 1
+  port                 = 80
 }
-*/
-
-/*module "external_load_balancer" {
-  source = "GoogleCloudPlatform/lb-http/google"
-  version = "~> 9.0"
-
-  name = "ecommerce-external-load-balancer"
-  project = var.gcp_project
-
-  target_tags = [ module.ecommerce_frontend_instances.managed_instance_group_url ]
-
-  backends = {
-    default = {
-      port = 80
-      protocol = "HTTP"
-      port_name = "http"
-      timeout_sec = 10
-      enable_cdn = false
-
-      health_check = {
-        check_interval_sec  = 5
-        timeout_sec         = 2
-        healthy_threshold   = 2
-        unhealthy_threshold = 10
-        request_path        = "/"
-        port                = 80
-      }
-
-      groups = [
-        {
-          group = module.ecommerce_frontend_instances.managed_instance_group_url
-        }
-      ]
-    }
-  }
-}*/
-
