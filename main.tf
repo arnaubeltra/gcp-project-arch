@@ -39,7 +39,7 @@ module "ecommerce_network" {
     },
     {
       firewall_rule_name = "ecommerce-python-server-allow"
-      ranges             = ["10.0.1.0/24",  "35.191.0.0/16", "130.211.0.0/22"]
+      ranges             = ["0.0.0.0/0"] #["10.0.1.0/24",  "35.191.0.0/16", "130.211.0.0/22"]
       target_tags        = ["ecommerce-backend-servers"]
       source_tags        = []
 
@@ -158,7 +158,7 @@ module "external_load_balancer" {
 
   lb_backend_name = "ecommerce-external-lb-backend"
   protocol        = "TCP"
-  group           = module.ecommerce_frontend_instances.managed_instance_group_url
+  group           = module.ecommerce_frontend_instances.managed_instance_group
   balancing_mode = "CONNECTION"
 
   lb_health_check_name = "ecommerce-external-lb-health-check"
@@ -173,13 +173,13 @@ module "internal_load_balancer" {
   lb_forwarding_rule_name = "ecommerce-internal-lb-forwarding-rule"
   region                  = "europe-west1"
   ip_protocol             = "TCP"
-  load_balancing_scheme   = "INTERNAL_MANAGED"
+  load_balancing_scheme   = "INTERNAL"
   port_range              = "8000"
 
   lb_backend_name = "ecommerce-internal-lb-backend"
   protocol        = "TCP"
-  group           = module.ecommerce_backend_instances.managed_instance_group_url
-  balancing_mode = "RATE"
+  group           = module.ecommerce_backend_instances.managed_instance_group
+  balancing_mode = "CONNECTION"
 
   lb_health_check_name = "ecommerce-internal-lb-health-check"
   check_interval_sec   = 1
