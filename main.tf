@@ -176,7 +176,7 @@ module "internal_load_balancer" {
   ip_protocol             = "TCP"
   load_balancing_scheme   = "INTERNAL"
   port_range              = "8000"
-  network = "ecommerce-backend"
+  network = module.ecommerce_network.network_id
 
   lb_backend_name = "ecommerce-internal-lb-backend"
   protocol        = "TCP"
