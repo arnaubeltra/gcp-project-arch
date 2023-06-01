@@ -5,6 +5,7 @@ resource "google_compute_forwarding_rule" "lb_forwarding_rule" {
   load_balancing_scheme = var.load_balancing_scheme
   port_range            = var.port_range
   network               = var.network
+  subnetwork            = var.subnetwork
   backend_service       = google_compute_region_backend_service.lb_backend.id
 }
 

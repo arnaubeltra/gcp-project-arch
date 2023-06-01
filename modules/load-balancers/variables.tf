@@ -21,6 +21,8 @@ variable "port_range" {}
 
 variable "network" {}
 
+variable "subnetwork" {}
+
 
 variable "lb_backend_name" {}
 
