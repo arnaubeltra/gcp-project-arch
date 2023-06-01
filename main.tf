@@ -159,8 +159,6 @@ module "external_load_balancer" {
   lb_backend_name = "ecommerce-external-lb-backend"
   protocol        = "HTTP"
   group           = module.ecommerce_frontend_instances.managed_instance_group_url
-  balancing_mode  = "UTILIZATION"
-  capacity_scaler = 1.0
 
   lb_health_check_name = "ecommerce-external-lb-health-check"
   check_interval_sec   = 1
