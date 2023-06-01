@@ -17,6 +17,7 @@ resource "google_compute_region_backend_service" "lb_backend" {
   health_checks         = [google_compute_region_health_check.lb_health_check.id]
   backend {
     group           = var.group
+    balancing_mode  = "RATE"
     #balancing_mode  = var.balancing_mode
     #capacity_scaler = var.capacity_scaler
   }
