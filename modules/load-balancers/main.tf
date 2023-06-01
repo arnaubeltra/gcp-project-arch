@@ -16,6 +16,7 @@ resource "google_compute_region_backend_service" "lb_backend" {
   backend {
     group           = var.group
     balancing_mode = var.balancing_mode
+    capacity_scaler = 1.0
   }
 }
 
