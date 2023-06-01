@@ -34,7 +34,7 @@ module "ecommerce_network" {
 
       allow = [{
         protocol = "tcp"
-        port     = ["80"]
+        ports     = ["80"]
       }]
     },
     {
@@ -45,7 +45,7 @@ module "ecommerce_network" {
 
       allow = [{
         protocol = "tcp"
-        port     = ["8000"]
+        ports     = ["8000"]
       }]
     }
   ]
@@ -164,4 +164,23 @@ module "external_load_balancer" {
   check_interval_sec   = 1
   timeout_sec          = 1
   port                 = 80
+}
+
+module "internal_load_balancer" {
+  source = "./modules/load-balancers"
+
+  lb_forwarding_rule_name = "ecommerce-internal-lb-forwarding-rule"
+  region                  = "europe-west1"
+  ip_protocol             = "TCP"
+  load_balancing_scheme   = "INTERNAL_MANAGED"
+  port_range              = "8000"
+
+  lb_backend_name = "ecommerce-internal-lb-backend"
+  protocol        = "HTTP"
+  group           = module.ecommerce_backend_instances.managed_instance_group_url
+
+  lb_health_check_name = "ecommerce-internal-lb-health-check"
+  check_interval_sec   = 1
+  timeout_sec          = 1
+  port                 = 8000
 }
