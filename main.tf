@@ -159,6 +159,7 @@ module "external_load_balancer" {
   lb_backend_name = "ecommerce-external-lb-backend"
   protocol        = "TCP"
   group           = module.ecommerce_frontend_instances.managed_instance_group_url
+  balancing_mode = "CONNECTION"
 
   lb_health_check_name = "ecommerce-external-lb-health-check"
   check_interval_sec   = 1
@@ -178,6 +179,7 @@ module "internal_load_balancer" {
   lb_backend_name = "ecommerce-internal-lb-backend"
   protocol        = "TCP"
   group           = module.ecommerce_backend_instances.managed_instance_group_url
+  balancing_mode = "UTILIZATION"
 
   lb_health_check_name = "ecommerce-internal-lb-health-check"
   check_interval_sec   = 1

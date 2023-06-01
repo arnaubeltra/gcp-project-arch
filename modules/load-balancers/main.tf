@@ -15,6 +15,7 @@ resource "google_compute_region_backend_service" "lb_backend" {
   protocol = var.protocol
   backend {
     group           = var.group
+    balancing_mode = var.balancing_mode
   }
 }
 
