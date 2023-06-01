@@ -39,7 +39,7 @@ module "ecommerce_network" {
     },
     {
       firewall_rule_name = "ecommerce-python-server-allow"
-      ranges             = ["10.0.1.0/24,  35.191.0.0/16, 130.211.0.0/22"]
+      ranges             = ["10.0.1.0/24",  "35.191.0.0/16", "130.211.0.0/22"]
       target_tags        = ["ecommerce-backend-servers"]
       source_tags        = []
 
