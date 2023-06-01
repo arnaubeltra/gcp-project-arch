@@ -155,6 +155,7 @@ module "external_load_balancer" {
   ip_protocol             = "TCP"
   load_balancing_scheme   = "EXTERNAL"
   port_range              = "80"
+  network = "ecommerce-frontend"
 
   lb_backend_name = "ecommerce-external-lb-backend"
   protocol        = "TCP"
@@ -175,6 +176,7 @@ module "internal_load_balancer" {
   ip_protocol             = "TCP"
   load_balancing_scheme   = "INTERNAL"
   port_range              = "8000"
+  network = "ecommerce-backend"
 
   lb_backend_name = "ecommerce-internal-lb-backend"
   protocol        = "TCP"
