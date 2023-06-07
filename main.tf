@@ -34,7 +34,7 @@ module "ecommerce_network" {
 
       allow = [{
         protocol = "tcp"
-        ports     = ["80"]
+        ports    = ["80"]
       }]
     },
     {
@@ -45,7 +45,7 @@ module "ecommerce_network" {
 
       allow = [{
         protocol = "tcp"
-        ports     = ["8000"]
+        ports    = ["8000"]
       }]
     }
   ]
@@ -56,12 +56,12 @@ module "ecommerce_frontend_instances" {
 
   depends_on = [module.ecommerce_network]
 
-  instance_template_name = "ecommerce-frontend-instance-template"
-  network_tags           = ["ecommerce-servers", "ecommerce-frontend-servers"]
-  machine_type           = "e2-medium"
-  source_image           = "debian-cloud/debian-11"
-  network                = "ecommerce-network"
-  subnetwork             = "ecommerce-frontend"
+  instance_template_name  = "ecommerce-frontend-instance-template"
+  network_tags            = ["ecommerce-servers", "ecommerce-frontend-servers"]
+  machine_type            = "e2-medium"
+  source_image            = "debian-cloud/debian-11"
+  network                 = "ecommerce-network"
+  subnetwork              = "ecommerce-frontend"
   metadata_startup_script = <<-EOT
     #!/bin/bash
     sudo apt-get update
@@ -96,12 +96,12 @@ module "ecommerce_backend_instances" {
 
   depends_on = [module.ecommerce_network]
 
-  instance_template_name = "ecommerce-backend-instance-template"
-  network_tags           = ["ecommerce-servers", "ecommerce-backend-servers"]
-  machine_type           = "e2-medium"
-  source_image           = "debian-cloud/debian-11"
-  network                = "ecommerce-network"
-  subnetwork             = "ecommerce-backend"
+  instance_template_name  = "ecommerce-backend-instance-template"
+  network_tags            = ["ecommerce-servers", "ecommerce-backend-servers"]
+  machine_type            = "e2-medium"
+  source_image            = "debian-cloud/debian-11"
+  network                 = "ecommerce-network"
+  subnetwork              = "ecommerce-backend"
   metadata_startup_script = <<-EOT
     #!/bin/bash
     python3 -m http.server 8000
@@ -148,20 +148,18 @@ module "ecommerce_backend_instances" {
 }*/
 
 module "external_load_balancer" {
-  source = "./modules/load-balancers"
+  source = "./modules/external-load-balancer"
 
   lb_forwarding_rule_name = "ecommerce-external-lb-forwarding-rule"
   region                  = "europe-west1"
   ip_protocol             = "TCP"
   load_balancing_scheme   = "EXTERNAL"
   port_range              = "80"
-  //network = ""
-  //subnetwork = ""
 
   lb_backend_name = "ecommerce-external-lb-backend"
   protocol        = "TCP"
   group           = module.ecommerce_frontend_instances.managed_instance_group
-  balancing_mode = "CONNECTION"
+  balancing_mode  = "CONNECTION"
 
   lb_health_check_name = "ecommerce-external-lb-health-check"
   check_interval_sec   = 1
@@ -169,24 +167,27 @@ module "external_load_balancer" {
   port                 = 80
 }
 
-/*module "internal_load_balancer" {
-  source = "./modules/load-balancers"
+module "internal_load_balancer" {
+  source = "./modules/internal-load-balancer"
 
-  lb_forwarding_rule_name = "ecommerce-internal-lb-forwarding-rule"
-  region                  = "europe-west1"
-  ip_protocol             = "TCP"
-  load_balancing_scheme   = "INTERNAL"
-  port_range              = "8000"
-  //network = module.ecommerce_network.network_id
-  //subnetwork = module.ecommerce_network.subnetwork_id
+  lb_forwarding_rule_name               = "ecommerce-internal-lb-forwarding-rule"
+  region                                = "europe-west1"
+  ip_protocol                           = "TCP"
+  forwarding_rule_load_balancing_scheme = "INTERNAL_MANAGED"
+  port_range                            = "8000"
 
-  lb_backend_name = "ecommerce-internal-lb-backend"
-  protocol        = "TCP"
-  group           = module.ecommerce_backend_instances.managed_instance_group
-  balancing_mode = "CONNECTION"
+  lb_region_target_http_proxy_name = "ecommerce-internal-lb-region-target-http-proxy"
+
+  lb_region_url_map_name = "ecommerce-internal-lb-region-url-map"
+
+  lb_backend_name               = "ecommerce-internal-lb-backend"
+  protocol                      = "HTTP"
+  backend_load_balancing_scheme = "INTERNAL_MANAGED"
+  group                         = module.ecommerce_backend_instances.managed_instance_group
+  balancing_mode                = "UTILIZATION"
+  capacity_scaler               = 1.0
 
   lb_health_check_name = "ecommerce-internal-lb-health-check"
   check_interval_sec   = 1
-  timeout_sec          = 1
   port                 = 8000
-}*/
+}
