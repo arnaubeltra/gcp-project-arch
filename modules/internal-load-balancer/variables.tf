@@ -43,4 +43,6 @@ variable "lb_health_check_name" {}
 
 variable "check_interval_sec" {}
 
+variable "timeout_sec" {}
+
 variable "port" {}
