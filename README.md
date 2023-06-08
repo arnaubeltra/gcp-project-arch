@@ -158,6 +158,7 @@ instances = {
   }
 }
 
+
 # Databases module
 private_ip_address_name    = "database-private-ip"
 prefix_length              = 24
@@ -186,6 +187,7 @@ external_lb_health_check_name  = "ecommerce-external-lb-health-check"
 external_lb_check_interval_sec = 1
 external_lb_timeout_sec        = 1
 external_lb_port               = 80
+
 
 # Internal load balancer module
 internal_lb_network    = "ecommerce-network"
