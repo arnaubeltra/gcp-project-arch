@@ -28,18 +28,18 @@ variable "network_tags" {
 variable "metadata_startup_script" {}
 
 
-variable "network" {}
+variable "instances_network" {}
 
-variable "subnetwork" {}
+variable "instances_subnetwork" {}
 
 
 variable "health_check_name" {}
 
-variable "check_interval_sec" {
+variable "instances_check_interval_sec" {
   default = 5
 }
 
-variable "timeout_sec" {
+variable "instances_timeout_sec" {
   default = 2
 }
 
@@ -53,7 +53,7 @@ variable "unhealthy_threshold" {
 
 variable "request_path" {}
 
-variable "port" {}
+variable "instances_port" {}
 
 
 variable "autoscaler_name" {}

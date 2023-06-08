@@ -6,11 +6,11 @@
   name          = var.private_ip_address_name
   address_type  = "INTERNAL"
   prefix_length = var.prefix_length
-  network       = var.network
+  network       = var.database_network
 }
 
 resource "google_service_networking_connection" "private_vpc_connection" {
-  network                 = var.network
+  network                 = var.database_network
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
 }
@@ -36,7 +36,7 @@ resource "google_sql_database_instance" "database_master" {
     ip_configuration {
       ipv4_enabled = true
       #ipv4_enabled                                  = false
-      #private_network                               = var.network
+      #private_network                               = var.database_network
       #enable_private_path_for_google_cloud_services = true
     }
   }
@@ -68,7 +68,7 @@ resource "google_sql_database_instance" "read_replica" {
     ip_configuration {
       ipv4_enabled = true
       #ipv4_enabled                                  = false
-      #private_network                               = var.network
+      #private_network                               = var.database_network
       #enable_private_path_for_google_cloud_services = true
     }
   }

@@ -11,32 +11,32 @@ variable "gcp_project" {
 }
 
 
-variable "lb_forwarding_rule_name" {}
+variable "external_lb_forwarding_rule_name" {}
 
-variable "ip_protocol" {}
+variable "external_lb_ip_protocol" {}
 
-variable "load_balancing_scheme" {}
+variable "external_lb_load_balancing_scheme" {}
 
-variable "port_range" {}
+variable "external_lb_port_range" {}
 
 /*variable "network" {}
 
 variable "subnetwork" {}*/
 
 
-variable "lb_backend_name" {}
+variable "external_lb_backend_name" {}
 
-variable "protocol" {}
+variable "external_lb_protocol" {}
 
 variable "group" {}
 
-variable "balancing_mode" {}
+variable "external_lb_balancing_mode" {}
 
 
-variable "lb_health_check_name" {}
+variable "external_lb_health_check_name" {}
 
-variable "check_interval_sec" {}
+variable "external_lb_check_interval_sec" {}
 
-variable "timeout_sec" {}
+variable "external_lb_timeout_sec" {}
 
-variable "port" {}
+variable "external_lb_port" {}

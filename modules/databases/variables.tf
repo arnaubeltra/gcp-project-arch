@@ -15,7 +15,7 @@ variable "private_ip_address_name" {}
 
 variable "prefix_length" {}
 
-variable "network" {}
+variable "database_network" {}
 
 
 variable "database_name" {}

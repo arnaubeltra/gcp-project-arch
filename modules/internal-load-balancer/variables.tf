@@ -11,18 +11,18 @@ variable "gcp_project" {
 }
 
 
-variable "network" {}
+variable "internal_lb_network" {}
 
-variable "subnetwork" {}
+variable "internal_lb_subnetwork" {}
 
 
-variable "lb_forwarding_rule_name" {}
+variable "internal_lb_forwarding_rule_name" {}
 
-variable "ip_protocol" {}
+variable "internal_lb_ip_protocol" {}
 
-variable "forwarding_rule_load_balancing_scheme" {}
+variable "internal_lb_load_balancing_scheme" {}
 
-variable "port_range" {}
+variable "internal_lb_port_range" {}
 
 
 variable "lb_region_target_http_proxy_name" {}
@@ -31,23 +31,23 @@ variable "lb_region_target_http_proxy_name" {}
 variable "lb_region_url_map_name" {}
 
 
-variable "lb_backend_name" {}
+variable "internal_lb_backend_name" {}
 
-variable "protocol" {}
+variable "internal_lb_protocol" {}
 
 variable "backend_load_balancing_scheme" {}
 
 variable "group" {}
 
-variable "balancing_mode" {}
+variable "internal_lb_balancing_mode" {}
 
 variable "capacity_scaler" {}
 
 
-variable "lb_health_check_name" {}
+variable "internal_lb_health_check_name" {}
 
-variable "check_interval_sec" {}
+variable "internal_lb_check_interval_sec" {}
 
-variable "timeout_sec" {}
+variable "internal_lb_timeout_sec" {}
 
-variable "port" {}
+variable "internal_lb_port" {}

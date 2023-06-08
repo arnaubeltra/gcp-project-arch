@@ -16,8 +16,8 @@ resource "google_compute_instance_template" "instance_template_app" {
   }
 
   network_interface {
-    network    = var.network
-    subnetwork = var.subnetwork
+    network    = var.instances_network
+    subnetwork = var.instances_subnetwork
     access_config {}
   }
 
@@ -27,14 +27,14 @@ resource "google_compute_instance_template" "instance_template_app" {
 resource "google_compute_health_check" "health_check_app" {
   name = var.health_check_name
 
-  check_interval_sec  = var.check_interval_sec
-  timeout_sec         = var.timeout_sec
+  check_interval_sec  = var.instances_check_interval_sec
+  timeout_sec         = var.instances_timeout_sec
   healthy_threshold   = var.healthy_threshold
   unhealthy_threshold = var.unhealthy_threshold
 
   http_health_check {
     request_path = var.request_path
-    port         = var.port
+    port         = var.instances_port
   }
 }
 
