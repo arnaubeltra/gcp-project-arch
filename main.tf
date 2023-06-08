@@ -86,6 +86,11 @@ module "internal_load_balancer" {
 
   depends_on = [module.ecommerce_instances["ecommerce-backend-instance-template"]]
 
+  internal_lb_subnet_name = var.internal_lb_subnet_name
+  subnet_ip_cidr_range    = var.subnet_ip_cidr_range
+  subnet_purpose          = var.subnet_purpose
+  subnet_role             = var.subnet_role
+
   internal_lb_network    = var.internal_lb_network
   internal_lb_subnetwork = var.internal_lb_subnetwork
 
@@ -94,6 +99,7 @@ module "internal_load_balancer" {
   internal_lb_ip_protocol           = var.internal_lb_ip_protocol
   internal_lb_load_balancing_scheme = var.internal_lb_load_balancing_scheme
   internal_lb_port_range            = var.internal_lb_port_range
+  network_tier                      = var.network_tier
 
   lb_region_target_http_proxy_name = var.lb_region_target_http_proxy_name
 
@@ -102,6 +108,7 @@ module "internal_load_balancer" {
   internal_lb_backend_name      = var.internal_lb_backend_name
   internal_lb_protocol          = var.internal_lb_protocol
   backend_load_balancing_scheme = var.backend_load_balancing_scheme
+  port_name                     = var.port_name
   group                         = module.ecommerce_instances["ecommerce-backend-instance-template"].managed_instance_group
   internal_lb_balancing_mode    = var.internal_lb_balancing_mode
   capacity_scaler               = var.capacity_scaler

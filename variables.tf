@@ -200,6 +200,26 @@ variable "internal_lb_subnetwork" {
   type        = string
 }
 
+variable "internal_lb_subnet_name" {
+  description = "Name of the subnetwork"
+  type        = string
+}
+
+variable "subnet_ip_cidr_range" {
+  description = "IP CIDR range for the subnetwork"
+  type        = string
+}
+
+variable "subnet_purpose" {
+  description = "Purpose of the subnetwork"
+  type        = string
+}
+
+variable "subnet_role" {
+  description = "Role of the subnetwork"
+  type        = string
+}
+
 variable "internal_lb_forwarding_rule_name" {
   description = "Name of the internal load balancer forwarding rule"
   type        = string
@@ -217,6 +237,11 @@ variable "internal_lb_load_balancing_scheme" {
 
 variable "internal_lb_port_range" {
   description = "Port range for the internal load balancer"
+  type        = string
+}
+
+variable "network_tier" {
+  description = "Network tier for the internal load balancer"
   type        = string
 }
 
@@ -242,6 +267,11 @@ variable "internal_lb_protocol" {
 
 variable "backend_load_balancing_scheme" {
   description = "Load balancing scheme for the backend of the internal load balancer"
+  type        = string
+}
+
+variable "port_name" {
+  description = "Port name for the backend of the internal load balancer"
   type        = string
 }
 
