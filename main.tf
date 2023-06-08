@@ -150,6 +150,8 @@ module "ecommerce_backend_instances" {
 module "external_load_balancer" {
   source = "./modules/external-load-balancer"
 
+  depends_on = [ module.ecommerce_frontend_instances ]
+
   lb_forwarding_rule_name = "ecommerce-external-lb-forwarding-rule"
   region                  = "europe-west1"
   ip_protocol             = "TCP"
@@ -169,6 +171,8 @@ module "external_load_balancer" {
 
 module "internal_load_balancer" {
   source = "./modules/internal-load-balancer"
+
+  depends_on = [ module.ecommerce_backend_instances ]
 
   lb_forwarding_rule_name               = "ecommerce-internal-lb-forwarding-rule"
   region                                = "europe-west1"
