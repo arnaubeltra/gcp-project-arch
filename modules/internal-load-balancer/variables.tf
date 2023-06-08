@@ -11,6 +11,11 @@ variable "gcp_project" {
 }
 
 
+variable "network" {}
+
+variable "subnetwork" {}
+
+
 variable "lb_forwarding_rule_name" {}
 
 variable "ip_protocol" {}

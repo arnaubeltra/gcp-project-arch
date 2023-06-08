@@ -174,6 +174,9 @@ module "internal_load_balancer" {
 
   depends_on = [ module.ecommerce_backend_instances ]
 
+  network = "ecommerce-network"
+  subnetwork = "ecommerce-backend"
+
   lb_forwarding_rule_name               = "ecommerce-internal-lb-forwarding-rule"
   region                                = "europe-west1"
   ip_protocol                           = "TCP"

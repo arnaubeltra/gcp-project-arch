@@ -1,10 +1,23 @@
+resource "google_compute_subnetwork" "lb_subnetwork" {
+  name = "lb-subnetwork"
+  ip_cidr_range = "10.0.0.0/24"
+  region = var.region
+  purpose = "INTERNAL_HTTPS_LOAD_BALANCER"
+  role = "ACTIVE"
+  network = var.network
+}
+
 resource "google_compute_forwarding_rule" "lb_forwarding_rule" {
   name                  = var.lb_forwarding_rule_name
   region                = var.region
+  depends_on = [ google_compute_subnetwork.lb_subnetwork ]
   ip_protocol           = var.ip_protocol
   load_balancing_scheme = var.forwarding_rule_load_balancing_scheme
   port_range            = var.port_range
   target                = google_compute_region_target_http_proxy.lb_region_target_http_proxy.id
+  network = var.network
+  subnetwork = var.subnetwork
+  network_tier = "PREMIUM"
 }
 
 resource "google_compute_region_target_http_proxy" "lb_region_target_http_proxy" {
