@@ -193,5 +193,6 @@ module "internal_load_balancer" {
 
   lb_health_check_name = "ecommerce-internal-lb-health-check"
   check_interval_sec   = 1
+  timeout_sec          = 1
   port                 = 8000
 }

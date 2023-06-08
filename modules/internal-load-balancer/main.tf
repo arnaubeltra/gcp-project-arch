@@ -37,6 +37,7 @@ resource "google_compute_region_health_check" "lb_health_check" {
   name               = var.lb_health_check_name
   region             = var.region
   check_interval_sec = var.check_interval_sec
+  timeout_sec        = var.timeout_sec
 
   http_health_check {
     port = var.port
