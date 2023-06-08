@@ -44,6 +44,8 @@ resource "google_compute_region_backend_service" "lb_backend_service" {
     balancing_mode  = var.balancing_mode
     capacity_scaler = var.capacity_scaler
   }
+
+  port_name = "http"
 }
 
 resource "google_compute_region_health_check" "lb_health_check" {
