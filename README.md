@@ -24,7 +24,7 @@ Example of the `terraform.tfvars` file that has been created to check the create
 
 ```hcl
 region      = "europe-west1"
-gcp_project = "gcp-project"
+gcp_project = "gcp-project-id"
 
 # Networking module
 network_name = "ecommerce-network"
@@ -76,7 +76,7 @@ firewall_rules = [
   },
   {
     firewall_rule_name = "ecommerce-python-server-allow"
-    ranges             = ["0.0.0.0/0"] #["10.0.1.0/24",  "35.191.0.0/16", "130.211.0.0/22"]
+    ranges             = ["10.0.1.0/24",  "35.191.0.0/16", "130.211.0.0/22"]
     target_tags        = ["ecommerce-backend-servers"]
     source_tags        = []
 
@@ -159,7 +159,7 @@ instances = {
 }
 
 # Databases module
-/*private_ip_address_name    = "database-private-ip"
+private_ip_address_name    = "database-private-ip"
 prefix_length              = 24
 database_network           = "projects/my-project/global/networks/ecommerce-network"
 database_name              = "ecommerce-database"
@@ -169,7 +169,7 @@ database_tier              = "db-f1-micro"
 availability_type          = "REGIONAL"
 disk_size                  = "100"
 database_read_replica_name = "ecommerce-database-read-replica"
-read_replica_region        = "europe-west2"*/
+read_replica_region        = "europe-west2"
 
 
 # External load balancer module
