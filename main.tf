@@ -45,7 +45,7 @@ module "ecommerce_network" {
 
       allow = [{
         protocol = "tcp"
-        ports    = ["8000"]
+        ports    = ["80"]
       }]
     }
   ]
@@ -104,7 +104,7 @@ module "ecommerce_backend_instances" {
   subnetwork              = "ecommerce-backend"
   metadata_startup_script = <<-EOT
     #!/bin/bash
-    python3 -m http.server 8000
+    python3 -m http.server 80
     EOT
 
   health_check_name   = "ecommerce-backend-health-check"
@@ -113,7 +113,7 @@ module "ecommerce_backend_instances" {
   healthy_threshold   = 2
   unhealthy_threshold = 10
   request_path        = "/"
-  port                = "8000"
+  port                = "80"
 
   autoscaler_name        = "ecommerce-backend-autoscaler"
   autoscaler_region      = "europe-west1"
@@ -181,7 +181,7 @@ module "internal_load_balancer" {
   region                                = "europe-west1"
   ip_protocol                           = "TCP"
   forwarding_rule_load_balancing_scheme = "INTERNAL_MANAGED"
-  port_range                            = "8000"
+  port_range                            = "80"
 
   lb_region_target_http_proxy_name = "ecommerce-internal-lb-region-target-http-proxy"
 
@@ -197,5 +197,5 @@ module "internal_load_balancer" {
   lb_health_check_name = "ecommerce-internal-lb-health-check"
   check_interval_sec   = 1
   timeout_sec          = 1
-  port                 = 8000
+  port                 = 80
 }
